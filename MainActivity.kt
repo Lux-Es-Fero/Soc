@@ -39,13 +39,5 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
-    fun prihl(view: View?){
-        val emailTextView = findViewById<TextView>(R.id.email_edittext_prihls)
-        val email = emailTextView.text.toString()
-        val hesloTextView = findViewById<TextView>(R.id.heslo_edittext_prihls)
-        val heslo = hesloTextView.text.toString()
 
-        Log.d("PrihlasteSa", "Email : " + email)
-        Log.d("PrihlasteSa", "Heslo : $heslo")
-        }
 }
