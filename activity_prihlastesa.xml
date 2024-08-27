@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#190A35">
+
+    <EditText
+        android:id="@+id/email_edittext_prihls"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/heslo_edittext_prihls"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:paddingLeft="20dp"
+        android:hint="Heslo"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/email_edittext_prihls"
+        app:layout_constraintStart_toStartOf="@+id/email_edittext_prihls"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext_prihls" />
+
+    <Button
+        android:id="@+id/prihls_button_prihls"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:onClick="prihls"
+        android:text="PRIHLÁSIŤ SA"
+        app:layout_constraintEnd_toEndOf="@+id/heslo_edittext_prihls"
+        app:layout_constraintStart_toStartOf="@+id/heslo_edittext_prihls"
+        app:layout_constraintTop_toBottomOf="@+id/heslo_edittext_prihls" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="143dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:text="Späť k registrácii"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/prihls_button_prihls"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/prihls_button_prihls"
+        app:layout_constraintTop_toBottomOf="@+id/prihls_button_prihls" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#190A35"
+    tools:context=".MainActivity" >
+
+    <EditText
+        android:id="@+id/uzmen_edittext_reg"
+        android:layout_width="368dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="false"
+        android:ems="10"
+        android:hint="Užívateľské Meno"
+        android:paddingLeft="20dp"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email_edittext_reg"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/uzmen_edittext_reg"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/uzmen_edittext_reg"
+        app:layout_constraintTop_toBottomOf="@+id/uzmen_edittext_reg" />
+
+    <EditText
+        android:id="@+id/heslo_edittext_reg"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Heslo"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/email_edittext_reg"
+        app:layout_constraintStart_toStartOf="@+id/email_edittext_reg"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext_reg" />
+
+    <Button
+        android:id="@+id/reg_button_reg"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:onClick="reg"
+        android:text="REGISTROVAŤ"
+        app:layout_constraintEnd_toEndOf="@+id/heslo_edittext_reg"
+        app:layout_constraintStart_toStartOf="@+id/heslo_edittext_reg"
+        app:layout_constraintTop_toBottomOf="@+id/heslo_edittext_reg" />
+
+    <TextView
+        android:id="@+id/mate_ucet_prihlaste_sa"
+        android:layout_width="174dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:onClick="prihls"
+        android:text="Máte účet? Prihláste sa"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/reg_button_reg"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/reg_button_reg"
+        app:layout_constraintTop_toBottomOf="@+id/reg_button_reg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
