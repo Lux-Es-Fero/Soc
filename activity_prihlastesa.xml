@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -41,24 +41,24 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:onClick="prihls"
+        android:onClick="prihl"
         android:text="PRIHLÁSIŤ SA"
         app:layout_constraintEnd_toEndOf="@+id/heslo_edittext_prihls"
         app:layout_constraintStart_toStartOf="@+id/heslo_edittext_prihls"
         app:layout_constraintTop_toBottomOf="@+id/heslo_edittext_prihls" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/spat_k_reg"
         android:layout_width="143dp"
         android:layout_height="62dp"
         android:layout_marginTop="24dp"
         android:clickable="true"
+        android:onClick="regs"
         android:text="Späť k registrácii"
         android:textColor="#FFFFFF"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/prihls_button_prihls"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/prihls_button_prihls"
         app:layout_constraintTop_toBottomOf="@+id/prihls_button_prihls" />
 </androidx.constraintlayout.widget.ConstraintLayout>
