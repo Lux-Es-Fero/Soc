@@ -33,7 +33,6 @@ class Spravy : AppCompatActivity() {
            R.id.menu_nova_sprava ->{
                val intent = Intent(this, NovaSprava::class.java)
                startActivity(intent)
-
            }
            R.id.menu_odhlassa ->{
                FirebaseAuth.getInstance().signOut()
