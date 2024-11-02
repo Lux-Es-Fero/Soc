@@ -21,16 +21,13 @@ class NovaSprava : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nova_sprava)
 
-
         supportActionBar?.title = "Vyberte Používatela"
-
 
         val adapter = GroupieAdapter<ViewHolder>()
 
         adapter.add(Pouzivatelia())
         adapter.add(Pouzivatelia())
         adapter.add(Pouzivatelia())
-
 
         recyclerview_novasprava.adapter = adapter
 
@@ -40,7 +37,6 @@ class NovaSprava : AppCompatActivity() {
     private fun fetchUsers(){
         val ref = FirebaseDatabase.getInstance().getReference("/users")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
-
 
                 override fun onDataChange(p0: DataSnapshot) {
                     val adapter = GroupAdapter<ViewHolder>()
@@ -58,13 +54,12 @@ class NovaSprava : AppCompatActivity() {
                     }
                 }
             )
-    override fun onCancelled(p0: DatabaseError) {
+        override fun onCancelled(p0: DatabaseError) {
+        }
+    }
+}
 
-
-    }}
-
-
-
+//Musi tato trieda byt tu? 
 class Pouzivatelia(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         val pouzmeno
