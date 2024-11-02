@@ -21,39 +21,42 @@ class PrihlasteSa: AppCompatActivity() {
     }
 
 
-        //gombik na prihlasene sa a vypis inputov do logcat
-        fun prihl(view: View?) {
-            val emailTextView = findViewById<TextView>(R.id.email_edittext_prihls)
-            val email = emailTextView.text.toString()
-            val hesloTextView = findViewById<TextView>(R.id.heslo_edittext_prihls)
-            val heslo = hesloTextView.text.toString()
+    //gombik na prihlasene sa a vypis inputov do logcat
+    fun prihl(view: View?) {
+        val email = getTextValue(R.id.email_edittext_prihls)
+        val heslo = getTextValue(R.id.heslo_edittext_prihls)
 
-            //vypis pre logcat
-            Log.d("PrihlasteSa", "Email : " + email)
-            Log.d("PrihlasteSa", "Heslo : $heslo")
+        //vypis pre logcat
+        Log.d("PrihlasteSa", "Email : " + email)
+        //Urcite potrebuje vediet logcat aj heslo? 
+        Log.d("PrihlasteSa", "Heslo : $heslo")
 
-            // ked chyba email a heslo
-            if(email.isEmpty() || heslo.isEmpty()) {
-                Toast.makeText(this, "Prosim zadajte email a heslo", Toast.LENGTH_SHORT).show()
-                return
+        // ked chyba email a heslo
+        if(email.isEmpty() || heslo.isEmpty()) {
+            Toast.makeText(this, "Prosim zadajte email a heslo", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        //prihlasenie pomocuo firebase
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email,heslo)
+            .addOnCompleteListener{
+                if(!it.isSuccessful) return@addOnCompleteListener
+
+                //ked je uspesny
+                Log.d("PrihlasteSa","Prihlasenie sa podarilo pre: ${it.result.user?.uid}")
             }
+            //ked email je nespravneho tvaru
+            .addOnFailureListener{
+                Log.d("PrihlasteSa", "Prihlasenie sa nepodarilo : ${it.message}")
+            }
+    }
+    //spat na registracnu stranku
+    fun regs(view: View?){
+        startActivity(Intent(this, RegistrujteSa::class.java))
 
-            //prihlasenie pomocuo firebase
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,heslo)
-                .addOnCompleteListener{
-                    if(!it.isSuccessful) return@addOnCompleteListener
+    }
 
-                    //ked je uspesny
-                    Log.d("PrihlasteSa","Prihlasenie sa podarilo pre: ${it.result.user?.uid}")
-                }
-                //ked email je nespravneho tvaru
-                .addOnFailureListener{
-                    Log.d("PrihlasteSa", "Prihlasenie sa nepodarilo : ${it.message}")
-                }
-        }
-        //spat na registracnu stranku
-        fun regs(view: View?){
-           startActivity(Intent(this, RegistrujteSa::class.java))
-
-        }
-        }
+    private fun getTextValue(textView: TextView): string{
+        return findViewById<TextView>(textView).text.toString()
+    }
+}

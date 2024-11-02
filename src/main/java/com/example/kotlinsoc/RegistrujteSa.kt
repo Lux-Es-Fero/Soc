@@ -20,25 +20,23 @@ class RegistrujteSa : AppCompatActivity() {
 
     }
 
-
     //prepis inputov do outputu (najprv vyhlada z activity_main.xml input a potom prepise do logcat)
     //funkcia "fun reg()" je gombik pre registraciu
     fun reg(view: View?) {
+        // aj tu mozes urobit, co som pripravil v prihlaste sa
         val emailTextView = findViewById<TextView>(R.id.email_edittext_reg)
         val email = emailTextView.text.toString()
         val hesloTextView = findViewById<TextView>(R.id.heslo_edittext_reg)
         val heslo = hesloTextView.text.toString()
+        //toto premenuj... uzmen? co to je? menoUzivatela, alebo hocico citatelnejsie :)
         val uzmenTextView = findViewById<TextView>(R.id.uzmen_edittext_reg)
         val uzmen = uzmenTextView.text.toString()
-
-
 
         // ked chyba email a heslo
         if (email.isEmpty() || heslo.isEmpty()) {
             Toast.makeText(this, "Prosim zadajte email a heslo", Toast.LENGTH_SHORT).show()
             return
         }
-
 
         //toto je na vypis pre output (v logcat)
         Log.d("RegistrujteSa", "Uzivatelske meno : $uzmen")
@@ -70,24 +68,21 @@ class RegistrujteSa : AppCompatActivity() {
 
     }
         //ukladanie pouzivatelov do databazi
-       private fun databaza() {
-           val uzmenTextView = findViewById<TextView>(R.id.uzmen_edittext_reg)
-           val uid = FirebaseAuth.getInstance().uid?:""
-           val ref = FirebaseDatabase.getInstance().getReference("users")
-           val user = User(uid, uzmenTextView.text.toString())
-           ref.setValue(user)
-               .addOnSuccessListener{
-                   Log.d("RegistrujteSa", "Podarila sa databaza")
+    private fun databaza() {
+        val uzmenTextView = findViewById<TextView>(R.id.uzmen_edittext_reg)
+        val uid = FirebaseAuth.getInstance().uid?:""
+        val ref = FirebaseDatabase.getInstance().getReference("users")
+        val user = User(uid, uzmenTextView.text.toString())
+        ref.setValue(user)
+            .addOnSuccessListener{
+                Log.d("RegistrujteSa", "Podarila sa databaza")
 
-                   val intent = Intent(this,Spravy::class.java)
-                   intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                   startActivity(intent)
-               }
+                val intent = Intent(this,Spravy::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
 
-        }
-
-
-
+    }
 }
 
 class User(val uid: String, val username: String) {

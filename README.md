@@ -1,7 +1,7 @@
-# soc
+# SOČ
 
-*Autor: Mark Bagyura
+**Autor:** Márk Bagyura
 
-*Trieda: 4.F
+**Trieda:** 4.F
 
-*Názov práce: Mobilná aplikácia odosielanie sprav
+**Názov práce:** Mobilná aplikácia odosielanie sprav
