@@ -7,11 +7,14 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout.TabGravity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
 class RegistrujteSa : AppCompatActivity() {
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,30 +69,46 @@ class RegistrujteSa : AppCompatActivity() {
 
 
             }
-            databaza()
+
+
+        databaza()
 
     }
-        //ukladanie pouzivatelov do databazi
-       private fun databaza() {
-           val uzmenTextView = findViewById<TextView>(R.id.uzmen_edittext_reg)
-           val uid = FirebaseAuth.getInstance().uid?:""
-           val ref = FirebaseDatabase.getInstance().getReference("users")
-           val user = User(uid, uzmenTextView.text.toString())
-           ref.setValue(user)
-               .addOnSuccessListener{
-                   Log.d("RegistrujteSa", "Podarila sa databaza")
 
-                   val intent = Intent(this,Spravy::class.java)
-                   intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                   startActivity(intent)
-               }
+    //ukladanie pouzivatelov do databazi
+   private fun databaza() {
+        val uzmenTextView = findViewById<TextView>(R.id.uzmen_edittext_reg)
+        val emailTextView = findViewById<TextView>(R.id.email_edittext_reg)
+        val uid = FirebaseAuth.getInstance().uid?:""
+        val ref = FirebaseDatabase.getInstance("https://kotlin-messenger-83d77-default-rtdb.europe-west1.firebasedatabase.app/").getReference("/Používatelia/$uid")
 
-        }
+        val user = User(uid, uzmenTextView.text.toString(), emailTextView.text.toString())
 
+        ref.setValue(user)
+            .addOnSuccessListener{
+                Log.d("RegistrujteSa", "Podarila sa databaza")
+
+                val intent = Intent(this,Spravy::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+
+            }
+            .addOnFailureListener{
+                Log.d("RegistrujteSa", "NEPODARILA SA DATABAZA")
+
+            }
+
+    }
+
+
+    fun prihls(view: View?){
+        startActivity(Intent(this, PrihlasteSa::class.java))
+
+    }
 
 
 }
 
-class User(val uid: String, val username: String) {
-    constructor(): this("","")
+class User(val uid: String, val username: String, val email: String) {
+    constructor(): this("","", "")
 }

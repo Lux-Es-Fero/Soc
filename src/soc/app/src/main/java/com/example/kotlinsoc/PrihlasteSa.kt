@@ -36,7 +36,14 @@ class PrihlasteSa: AppCompatActivity() {
             if(email.isEmpty() || heslo.isEmpty()) {
                 Toast.makeText(this, "Prosim zadajte email a heslo", Toast.LENGTH_SHORT).show()
                 return
+
+
+                val intent = Intent(this,Spravy::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+
             }
+
 
             //prihlasenie pomocuo firebase
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,heslo)

@@ -57,8 +57,4 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-database")
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
-    implementation ("com.squareup.picasso:picasso:2.8")
-    implementation ("com.github.lisawray.groupie:groupie:2.10.1")
-    implementation ("com.github.lisawray.groupie:groupie-viewbinding:2.10.1")
-    implementation("com.google.android.gms:play-services-auth:19.0.0")
 }
