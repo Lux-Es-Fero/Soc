@@ -52,6 +52,11 @@ class PrihlasteSa: AppCompatActivity() {
 
                     //ked je uspesny
                     Log.d("PrihlasteSa","Prihlasenie sa podarilo pre: ${it.result.user?.uid}")
+
+                    val intent = Intent(this,Spravy::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+
                 }
                 //ked email je nespravneho tvaru
                 .addOnFailureListener{
