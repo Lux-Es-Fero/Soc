@@ -3,46 +3,67 @@ package com.example.kotlinsoc
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 //hlavna stranka
 class Spravy : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    private lateinit var dbref : DatabaseReference
+    private lateinit var userRecyclerView : RecyclerView
+    private lateinit var userArrayList: ArrayList<Pouz>
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
         setContentView(R.layout.activity_spravy)
-        //ked pouzivatel je prihlaseny tak nech sa nemusi zas prihlasovat
-        //ked nie je prihlaseny tak sa presmeruje na prihlasovaciu stranku
-        val uid = FirebaseAuth.getInstance().uid
-        if (uid == null){
-            val intent = Intent (this, RegistrujteSa::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }
+
+        userRecyclerView = findViewById(R.id.userList)
+        userRecyclerView.layoutManager = LinearLayoutManager(this)
+        userRecyclerView.setHasFixedSize(true)
+
+        userArrayList = arrayListOf<Pouz>()
+        getUserData()
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-    //menu kde je gombik pre odhlasenie a presmerovanie na vyhladavanie pouzivatelov
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-       when (item.itemId){
-           R.id.menu_nova_sprava ->{
-               val intent = Intent(this, NovaSprava::class.java)
-               startActivity(intent)
+    private fun getUserData() {
 
-           }
-           R.id.menu_odhlassa ->{
-               FirebaseAuth.getInstance().signOut()
-               val intent = Intent (this, RegistrujteSa::class.java)
-               intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-               startActivity(intent)
-           }
-       }
+        dbref = FirebaseDatabase.getInstance("https://kotlin-messenger-83d77-default-rtdb.europe-west1.firebasedatabase.app/").getReference("/Používatelia/")
 
-        return super.onOptionsItemSelected(item)
+        dbref.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot){
+
+                if (snapshot.exists()){
+
+                    for (userSnapshot in snapshot.children){
+
+                        val pouz = userSnapshot.getValue(Pouz::class.java)
+                        userArrayList.add(pouz!!)
+
+                    }
+
+                    userRecyclerView.adapter = Adapter(userArrayList)
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError){
+
+            }
+        })
+
     }
+
 }
+
+

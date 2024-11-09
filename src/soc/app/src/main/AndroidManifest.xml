@@ -12,17 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kotlinsoc"
         tools:targetApi="31">
-        <activity
-            android:name=".NovaSprava"
-            android:exported="true" />
+
         <activity
             android:name=".Spravy"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".RegistrujteSa"
@@ -33,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".PrihlasteSa"
             android:exported="true"/>

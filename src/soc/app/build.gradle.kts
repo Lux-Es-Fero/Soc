@@ -5,7 +5,6 @@ plugins {
     id("com.google.gms.google-services")
 
 }
-
 android {
     namespace = "com.example.kotlinsoc"
     compileSdk = 34

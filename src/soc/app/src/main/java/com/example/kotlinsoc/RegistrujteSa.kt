@@ -65,6 +65,7 @@ class RegistrujteSa : AppCompatActivity() {
                     this,
                     "Registracia sa nepodarila : ${it.message}",
                     Toast.LENGTH_SHORT
+
                 ).show()
 
 
